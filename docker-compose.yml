@@ -11,9 +11,9 @@ services:
       - postgres:/var/lib/postgresql/data
       - ./backup:/backup
     secrets:
-      - pgsql-user
+      - pgsql-pass
     environment:
-      POSTGRES_USER: 'my-postgres-user'
-      POSTGRES_PASSWORD_FILE: '/run/secrets/pgsql-user'
-      POSTGRES_DB: 'infra'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD_FILE: '/run/secrets/pgsql-pass'
+      POSTGRES_DB: 'MyDatabase'
       PGDATA: '/var/lib/postgresql/data/pgdata'
