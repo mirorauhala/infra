@@ -43,8 +43,8 @@ jobs:
       - name: ls -la
         run: ls -la $GITHUB_WORKSPACE
 
-      # - name: Setup infra
-      #   run: rsync prod 
+      - name: Setup infra
+        run: rsync -azvhP $GITHUB_WORKSPACE prod:/home/github/infra
 
       # - name: Setup backup time
       #   run: ssh prod 'date +"%y-%m-%d_%H:%M" > ./backup/last_backup'
