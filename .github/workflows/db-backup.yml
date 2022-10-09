@@ -47,7 +47,7 @@ jobs:
         run: rsync -azvhP --delete $GITHUB_WORKSPACE prod:/home/github
 
       - name: Start infra
-        run: ssh prod 'docker-compose up -d'
+        run: ssh prod 'cd infra && docker-compose up -d'
 
       # - name: Setup backup time
       #   run: ssh prod 'date +"%y-%m-%d_%H:%M" > ./backup/last_backup'
