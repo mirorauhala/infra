@@ -40,9 +40,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.1.0
 
-      - name: ls -la
-        run: ls -la $GITHUB_WORKSPACE
-
       - name: Setup infra
         run: rsync -azvhP --delete $GITHUB_WORKSPACE prod:/home/github
 
