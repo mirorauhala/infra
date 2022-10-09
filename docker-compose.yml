@@ -3,6 +3,10 @@ version: "3.2"
 volumes:
   pg_data:
 
+secrets:
+  pgsql-pass:
+    external: true
+      
 services:
   postgres:
     image: library/postgres:14.5
