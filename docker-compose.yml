@@ -1,5 +1,9 @@
 version: "3.2"
 
+networks:
+  infra:
+    external: true
+
 volumes:
   pg_data:
 
@@ -11,6 +15,10 @@ services:
   postgres:
     image: library/postgres:14.5
     restart: 'unless-stopped'
+    ports:
+      - 5432:5432
+    networks:
+      - infra
     volumes:
       - pg_data:/var/lib/postgresql/data
       - ./backup:/backup
