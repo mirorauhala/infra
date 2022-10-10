@@ -46,6 +46,7 @@ jobs:
       - name: Setup secrets
         run: |
           ssh prod 'echo "CF_DNS_API_TOKEN=$(sops -d ./infra/secrets.enc.json |jq -r .cloudflare_token)" > ./infra/.env'
+          ssh prod 'echo "PGSQL_PASS=$(sops -d ./infra/secrets.enc.json |jq -r .postgres_pass)" >> ./infra/.env'
 
       - name: Start infra
         run: ssh prod 'cd infra && sudo docker-compose up -d'

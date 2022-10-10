@@ -22,11 +22,9 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
       - ./backup:/backup
-    secrets:
-      - pgsql-pass
     environment:
       POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD_FILE: '/run/secrets/pgsql-pass'
+      POSTGRES_PASSWORD_FILE: ${PGSQL_PASS}
       POSTGRES_DB: 'MyDatabase'
       PGDATA: '/var/lib/postgresql/data/pgdata'
 
