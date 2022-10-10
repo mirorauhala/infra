@@ -29,7 +29,6 @@
 
   [entryPoints.https]
     address = ":443"
-    enableHTTP3 = true
 
 [providers]
   [providers.docker]
