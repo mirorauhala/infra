@@ -29,3 +29,28 @@ services:
       POSTGRES_PASSWORD_FILE: '/run/secrets/pgsql-pass'
       POSTGRES_DB: 'MyDatabase'
       PGDATA: '/var/lib/postgresql/data/pgdata'
+
+  traefik:
+    image: traefik:2.9
+    restart: always
+    volumes:
+      - ./traefik:/etc/traefik:rw
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - infra
+    ports:
+      - "80:80"
+      - "443:443"
+    environment: 
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.rauhala.dev`)"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.middlewares=auth@file"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=le"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=rauhala.dev"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.rauhala.dev"

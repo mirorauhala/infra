@@ -1,0 +1,53 @@
+[global]
+  checkNewVersion = true
+  sendAnonymousUsage = false
+
+[serversTransport]
+  insecureSkipVerify = true
+
+[experimental]
+  http3 = true
+
+[accessLog]
+  filePath = "/etc/traefik/access.log"
+  bufferingSize = 500
+    [accessLog.fields.headers]
+      defaultMode = "keep"
+
+      [accessLog.fields.headers.names]
+        "Authorization" = "drop"
+        "X-Forwarded-For" = "keep"
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+
+  [entryPoints.http.http.redirections]
+    [entryPoints.http.http.redirections.entryPoint]
+      to = "https"
+      scheme = "https"
+
+  [entryPoints.https]
+    address = ":443"
+    enableHTTP3 = true
+
+[providers]
+  [providers.docker]
+    network = "infra"
+    exposedByDefault = false
+  [providers.file]
+    directory = "/etc/traefik"
+    watch = true
+    filename = "dynamic.toml"
+
+[api]
+  dashboard = true
+  insecure = false
+
+[certificatesResolvers]
+  [certificatesResolvers.le]
+    [certificatesResolvers.le.acme]
+      storage = "/etc/traefik/resolvers.json"
+      email = "letsencrypt@rauhala.dev"
+      [certificatesResolvers.le.acme.dnsChallenge]
+        provider = "cloudflare"

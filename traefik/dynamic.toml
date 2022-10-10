@@ -1,0 +1,11 @@
+[http]
+  [http.middlewares]
+    [http.middlewares.auth.basicAuth]
+    usersfile = "/etc/traefik/usersfile"
+
+[tls.options]
+  [tls.options.default]
+    minVersion = "VersionTLS12"
+
+  [tls.options.mintls13]
+    minVersion = "VersionTLS12"
