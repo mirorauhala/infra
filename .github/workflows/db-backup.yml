@@ -46,7 +46,7 @@ jobs:
       - name: Setup secrets
         run: |
           export SOPS_AGE_KEY_FILE=/home/github/infra/keys/id_age
-          ssh prod 'echo "CF_DNS_API_TOKEN=$(sops -d secrets.enc.json |jq -r .cloudflare_token)" > .env'
+          ssh prod 'echo "CF_DNS_API_TOKEN=$(sops -d ./infra/secrets.enc.json |jq -r .cloudflare_token)" > ./infra/.env'
 
       - name: Start infra
         run: ssh prod 'cd infra && sudo docker-compose up -d'
