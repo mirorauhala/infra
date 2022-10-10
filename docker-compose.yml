@@ -24,7 +24,7 @@ services:
       - ./backup:/backup
     environment:
       POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD_FILE: ${PGSQL_PASS}
+      POSTGRES_PASSWORD: ${PGSQL_PASS}
       POSTGRES_DB: 'MyDatabase'
       PGDATA: '/var/lib/postgresql/data/pgdata'
 
