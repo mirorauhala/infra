@@ -16,3 +16,8 @@
     # does not listen on "other" entry point
     entryPoints = ["streaming"]
     service = "streamingservice"
+
+[udp.services]
+  [udp.services.my-service.loadBalancer]
+    [[udp.services.my-service.loadBalancer.servers]]
+      address = "broadcast-box:8080"
