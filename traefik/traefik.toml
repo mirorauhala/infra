@@ -30,6 +30,9 @@
   [entryPoints.https]
     address = ":443"
 
+  [entryPoints.streaming]
+    address = ":6969/udp"
+
 [providers]
   [providers.docker]
     network = "infra"
