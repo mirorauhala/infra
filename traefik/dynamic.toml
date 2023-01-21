@@ -9,3 +9,10 @@
 
   [tls.options.mintls13]
     minVersion = "VersionTLS12"
+
+## Dynamic configuration
+[udp.routers]
+  [udp.routers.streamingrouter]
+    # does not listen on "other" entry point
+    entryPoints = ["streaming"]
+    service = "streamingservice"

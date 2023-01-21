@@ -31,7 +31,7 @@
     address = ":443"
 
   [entryPoints.streaming]
-    address = ":6969/udp"
+    address = ":8080/udp"
 
 [providers]
   [providers.docker]
