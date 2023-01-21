@@ -18,6 +18,6 @@
     service = "streamingservice"
 
 [udp.services]
-  [udp.services.my-service.loadBalancer]
-    [[udp.services.my-service.loadBalancer.servers]]
+  [udp.services.streamingservice.loadBalancer]
+    [[udp.services.streamingservice.loadBalancer.servers]]
       address = "broadcast-box:8080"
