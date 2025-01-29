@@ -7,7 +7,7 @@ rauhala.dev {
     encode zstd gzip
     root * /srv/rauhala
 
-    reserve_proxy rauhala:3000
+    reverse_proxy rauhala:3000
 }
 
 mirorauhala.fi, www.mirorauhala.fi {
