@@ -7,11 +7,9 @@ on:
     # paths:
     #   - 'docker-compose.yml'
 
-
   #schedule:
-    # * is a special character in YAML so you have to quote this string
-    #- cron:  '0 5 * * *' # At 05:00
-
+  # * is a special character in YAML so you have to quote this string
+  # - cron:  '0 5 * * *' # At 05:00
 
 jobs:
   deploy:
@@ -40,8 +38,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.1.0
 
-      - name: Setup infra
-        run: rsync -azvhP --delete $GITHUB_WORKSPACE prod:/home/github
+      - name: Update infra
+        run: ssh prod 'cd infra; git pull'
 
       - name: Setup secrets
         run: |
